@@ -13,7 +13,7 @@
  */
 
 import {AuthorizationRequest, AuthorizationRequestJson} from './authorization_request';
-import {AuthorizationRequestHandler, AuthorizationRequestResponse, BUILT_IN_PARAMETERS, generateRandom} from './authorization_request_handler';
+import {AuthorizationRequestHandler, AuthorizationRequestResponse, BUILT_IN_PARAMETERS} from './authorization_request_handler';
 import {AuthorizationError, AuthorizationResponse, AuthorizationResponseJson} from './authorization_response'
 import {AuthorizationServiceConfiguration, AuthorizationServiceConfigurationJson} from './authorization_service_configuration';
 import {log} from './logger';
@@ -60,7 +60,7 @@ export class RedirectRequestHandler extends AuthorizationRequestHandler {
   performAuthorizationRequest(
       configuration: AuthorizationServiceConfiguration,
       request: AuthorizationRequest) {
-    let handle = generateRandom();
+    let handle = this.generateRandom();
     // before you make request, persist all request related data in local storage.
     let persisted = Promise.all([
       this.storageBackend.setItem(AUTHORIZATION_REQUEST_HANDLE_KEY, handle),
